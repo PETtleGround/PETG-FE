@@ -7,9 +7,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import change_img from "../assets/change_img.svg";
 import plus_img from "../assets/plus_img.svg";
+import Topbar from "../components/Topbar";
+import { useNavigate } from "react-router-dom";
 
 const Topic = () => {
   const [topicList, setTopicList] = useState(null);
+  const navigate = useNavigate();
+
+  const navigateToDetail = () => {
+    navigate("/topic/detail");
+  };
 
   const getTopicList = async () => {
     setTopicList([
@@ -72,7 +79,7 @@ const Topic = () => {
 
   return (
     <PageComponent>
-      <div>메뉴바</div>
+      <Topbar />
       <TopicHeader>
         <Image src={PETG_img} alt="PETG" />
         <NanumTextDiv margin="-19px 0px 0px 0px">내 PETG가 제일 잘하는 것은?</NanumTextDiv>
@@ -88,7 +95,7 @@ const Topic = () => {
       {topicList !== null ? (
         topicList.map((item) => {
           return (
-            <EachTopicBox key={item.id}>
+            <EachTopicBox key={item.id} onClick={navigateToDetail}>
               <EachTopicTextBox>
                 <EachTopicFirstLine margin="24px 0px 0px 24px">
                   <EachTopicFirstLineText>{item.name}</EachTopicFirstLineText>

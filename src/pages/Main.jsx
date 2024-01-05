@@ -13,7 +13,7 @@ import axios from "axios";
 const Main = () => {
   const navigate = useNavigate();
   const navigateToAll = () => {
-    navigate("/topic/detail");
+    navigate("/topic");
   };
 
   const [hotItems, setHotItems] = useState(null);
