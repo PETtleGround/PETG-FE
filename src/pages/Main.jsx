@@ -7,14 +7,41 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import trophy_img from "../assets/trophy.svg";
 import dummy from "../dummy.json";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Main = () => {
+  const navigate = useNavigate();
+  const navigateToAll = () => {
+    navigate("/topic/detail");
+  };
+
+  const [hotItems, setHotItems] = useState(null);
+
+  useEffect(() => {
+    // fetchHotItems();
+  }, []);
+
+  // const fetchHotItems = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       "http://ec2-43-201-127-147.ap-northeast-2.compute.amazonaws.com:8080/v1/api/topic",
+  //     );
+  //     console.log(res);
+  //     setHotItems(res.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   return (
     <PageComponent>
       <Topbar />
-
       <MainHeader>
-        <Image src={PETG_img} alt="PETG" />
+        <Image
+          src="https://raw.githubusercontent.com/MinJaeSon/assets/3ae20162d9140b9992bc25c6024bb94fffa7c2ab/letter_logo.svg"
+          alt="PETG"
+        />
         <NanumTextDiv margin="-24px 0px 0px 0px">토픽 TOP3</NanumTextDiv>
         <InterTextDiv>지금 바로 나의 PETG를 저장해보세요</InterTextDiv>
         <InterTextDiv margin="7px 0px 0px 0px">현재 인기 많은 PETG는?</InterTextDiv>
@@ -25,12 +52,14 @@ const Main = () => {
             <h4>{item.topic}</h4>
             <img src={item.img} alt={item.topic} />
             <p>
-              {item.petName}({item.nickname})
+              {item.name}({item.nickname})
             </p>
           </CardWrapper>
         ))}
       </ListWrapper>
-      <ButtonDiv margin="95px 0px 0px 0px">모든 토픽 보러가기</ButtonDiv>
+      <ButtonDiv margin="95px 0px 0px 0px" onClick={navigateToAll}>
+        모든 토픽 보러가기
+      </ButtonDiv>
       <TrophyImage width="97.656px" height="94px" src={trophy_img} alt="trophy" />
     </PageComponent>
   );
@@ -39,11 +68,12 @@ const Main = () => {
 export default Main;
 
 const PageComponent = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 `;
 
 const MainHeader = styled.div`
@@ -53,21 +83,20 @@ const MainHeader = styled.div`
   align-items: center;
 `;
 const Image = styled.img`
-  width: ${(props) => props.width || "476px"};
-  height: ${(props) => props.height || "236px"};
-  object-fit: contain;
-  display: block;
-  z-index: -1;
+  width: 200px;
+  height: 60px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 `;
 
 const TrophyImage = styled.img`
-  position: absolute;
+  position: fixed;
   width: ${(props) => props.width || "476px"};
   height: ${(props) => props.height || "236px"};
   object-fit: contain;
   display: block;
   z-index: -1;
-  bottom: 77px;
+  bottom: 68px;
   right: 56.34px;
 `;
 
@@ -126,8 +155,8 @@ const CardWrapper = styled.div`
     font-size: 16px;
     font-style: normal;
   }
-  & + & {
-    margin-left: 40px;
+  &:not(:last-of-type) {
+    margin-right: 40px;
   }
 `;
 
@@ -147,5 +176,6 @@ const ButtonDiv = styled.button`
   font-weight: 700;
   line-height: 160%; /* 25.6px */
   border: none;
-  margin: ${(props) => props.margin || "0px"};
+  margin-top: 60px;
+  margin-bottom: 80px;
 `;

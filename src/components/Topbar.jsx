@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Topbar = () => {
+  const navigate = useNavigate();
+  const navigateToSignUp = () => {
+    navigate("/signup");
+  };
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   return (
     <Wrapper>
-      <Logo src={logo} />
-      <SignInButton>로그인/회원가입</SignInButton>
+      <Logo src={logo} onClick={navigateToHome} />
+      <SignInButton onClick={navigateToSignUp}>로그인/회원가입</SignInButton>
     </Wrapper>
   );
 };
@@ -41,6 +50,6 @@ const SignInButton = styled.button`
   font-family: NanumSquareRound;
   font-size: 14px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   border: none;
 `;

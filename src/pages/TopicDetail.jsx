@@ -4,9 +4,18 @@ import styled from "styled-components";
 import PETG_img from "../assets/PETG.svg";
 import Topbar from "../components/Topbar";
 import BlankHeart from "../assets/blank_heart.svg";
+import ParticipateModal from "../components/ParticipateModal";
 
 const TopicDetail = () => {
   const [petList, setPetList] = useState(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModalHandler = () => {
+    setIsModalOpen(true);
+  };
+  const closeModalHandler = () => {
+    setIsModalOpen(false);
+  };
 
   const getTopicList = async () => {
     setPetList([
@@ -86,7 +95,8 @@ const TopicDetail = () => {
       <TopicHeader>
         <Image src={PETG_img} alt="PETG" />
         <NanumTextDiv>물구나무 잘 서는 PETG 다모여</NanumTextDiv>
-        <WriteButton>글쓰기</WriteButton>
+        <WriteButton onClick={openModalHandler}>참전하기</WriteButton>
+        <ParticipateModal isOpen={isModalOpen} onClose={closeModalHandler} />
       </TopicHeader>
       <PetListTotal>
         {petList !== null ? (
@@ -157,7 +167,7 @@ const Image = styled.img`
 `;
 
 const NanumTextDiv = styled.div`
-  color: var(--sub-2, #ffc47e);
+  color: var(--sub-2, #ec8007);
   text-align: center;
   font-family: NanumSquareRound;
   font-size: 32px;
@@ -169,6 +179,8 @@ const NanumTextDiv = styled.div`
 
 const WriteButton = styled.button`
   position: absolute;
+  width: 80px;
+  height: 30px;
   top: 311px;
   right: 265px;
   color: var(--sub-2, #ffc47e);
@@ -176,7 +188,7 @@ const WriteButton = styled.button`
   font-family: NanumSquareRound;
   font-size: 32px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
   text-transform: capitalize;
   border-radius: 8px;
@@ -208,6 +220,7 @@ const PetDetailBox = styled.div`
   border-radius: 16px;
   border: 2px solid var(--Main, #ec8007);
   background: rgba(255, 255, 255, 0.64);
+  padding: 12px 20px;
 `;
 
 const PetDetailTitle = styled.div`
