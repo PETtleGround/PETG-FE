@@ -12,6 +12,7 @@ const Main = () => {
   return (
     <PageComponent>
       <Topbar />
+
       <MainHeader>
         <Image src={PETG_img} alt="PETG" />
         <NanumTextDiv margin="-24px 0px 0px 0px">토픽 TOP3</NanumTextDiv>
