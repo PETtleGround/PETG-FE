@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import smallLogo from "../assets/logo_img.svg";
 import lineImg from "../assets/line_img.svg";
-import petImg from "../assets/pet_img.png";
+import petImg from "../assets/pet_img.svg";
 import errorImg from "../assets/error.svg";
 import closeImg from "../assets/close.svg";
 import signupImg from "../assets/signup.png";
@@ -43,10 +43,7 @@ const Login = () => {
       ...loginInfo,
       password: passwordCurrent,
     });
-    var regExp = /^(?=.*[a-zA-Z])(?=.*[0-9])/;
-    if (passwordCurrent.length < 8 || passwordCurrent.length > 16) {
-      setIsPassword(false);
-    } else if (regExp.test(passwordCurrent)) {
+    if (loginInfo.password !== "") {
       setIsPassword(true);
     } else {
       setIsPassword(false);
@@ -117,11 +114,18 @@ const Login = () => {
           autocomplete="off"
         />
         {isEmail && isPassword ? (
-          <LoginButton color="#fff" backgroundColor="#EC8007">
+          <LoginButton
+            onClick={login}
+            margin="20px 0px 0px 0px"
+            color="#fff"
+            backgroundColor="#EC8007"
+          >
             로그인
           </LoginButton>
         ) : (
-          <LoginButton>로그인</LoginButton>
+          <LoginButton onClick={login} margin="20px 0px 0px 0px">
+            로그인
+          </LoginButton>
         )}
         <TextTotalComponent margin="40px 0px 0px 0px">
           <TextDiv fontSize="14px" color="#BBB" fontWeight="400">
@@ -311,7 +315,7 @@ const LoginButton = styled.button`
   align-items: center;
   gap: 20px;
   border-radius: 12px;
-
+  cursor: pointer;
   font-family: NanumSquareRound;
   font-size: 16px;
   font-style: normal;
