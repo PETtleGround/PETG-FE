@@ -11,12 +11,14 @@ import signupImg from "../assets/signup.png";
 import { UserLogin } from "../apis/userApi";
 
 const Login = () => {
+
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [openErrorModal, setOpenErrorModal] = useState(false);
   const [openSignUpModal, setOpenSignUpModal] = useState(false);
 
   const [loginInfo, setLoginInfo] = useState({
+
     email: "",
     password: "",
   });

@@ -1,8 +1,10 @@
+
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PETG_img from "../assets/PETG.svg";
 import Slider from "react-slick";
+import Topbar from "../components/Topbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import trophy_img from "../assets/trophy.svg";
@@ -10,7 +12,9 @@ import trophy_img from "../assets/trophy.svg";
 const Main = () => {
   return (
     <PageComponent>
-      <div>메뉴바</div>
+      <div>
+        <Topbar />
+      </div>
       <MainHeader>
         <Image src={PETG_img} alt="PETG" />
         <NanumTextDiv margin="-24px 0px 0px 0px">토픽 TOP3</NanumTextDiv>
@@ -22,6 +26,7 @@ const Main = () => {
       <ButtonDiv margin="95px 0px 0px 0px">모든 토픽 보러가기</ButtonDiv>
       <TrophyImage width="97.656px" height="94px" src={trophy_img} alt="trophy" />
     </PageComponent>
+
   );
 };
 
