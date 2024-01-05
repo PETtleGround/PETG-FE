@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   // eslint-disable-next-line no-unused-vars
@@ -147,20 +148,15 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const onApply = () => {
-    if (
-      name &&
-      nickname &&
-      year &&
-      month &&
-      date &&
-      email &&
-      password &&
-      passwordCheck &&
-      !mismatchError
-    ) {
+    if (nickname && email && password && passwordCheck && !mismatchError) {
       // 서버에 데이터 전송
-      console.log("회원가입 완료");
-      navigate("/signedup");
+      onRegisterUserInfo();
+      console.log("유저 정보 등록 완료");
+      if (name && selectedType && selectedSex && year && month && date) {
+        onRegisterPetInfo();
+      }
+      console.log("반려동물 정보 등록 완료");
+      // navigate("/signedup");
     } else {
       alert("입력값을 확인해주세요.");
     }
@@ -168,6 +164,37 @@ const SignUp = () => {
 
   const navigateToLogin = () => {
     navigate("/login");
+  };
+
+  const onRegisterUserInfo = async () => {
+    try {
+      const res = await axios.post(
+        "http://ec2-43-201-127-147.ap-northeast-2.compute.amazonaws.com:8080/v1/api/auth/join",
+        {
+          email: email,
+          password: password,
+          name: nickname,
+        },
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onRegisterPetInfo = async () => {
+    try {
+      const res = await axios.post(
+        "http://ec2-43-201-127-147.ap-northeast-2.compute.amazonaws.com:8080//v1/api/pet/add",
+        {
+          name: name,
+          birth: year + ":" + month + ":" + date,
+        },
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
