@@ -1,9 +1,58 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PETG_img from "../assets/PETG.svg";
 
 const Main = () => {
+  const [petList, setPetList] = useState("");
+
+  const getPetList = async () => {
+    // try {
+    //   await UserLogin(loginInfo).then((res) => {
+    //     console.log(res);
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    setPetList([
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+      {
+        img: PETG_img,
+        title: "어떤 브랜드가 살아남는가? 인정받는 브랜드의 비밀",
+        content: "내용 예시입니당",
+      },
+    ]);
+  };
+
   return (
     <PageComponent>
       <div>메뉴바</div>
