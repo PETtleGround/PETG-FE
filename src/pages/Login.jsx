@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Login = () => {
+  // eslint-disable-next-line no-unused-vars
   const [LoginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
