@@ -1,4 +1,3 @@
-
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -12,9 +11,8 @@ import trophy_img from "../assets/trophy.svg";
 const Main = () => {
   return (
     <PageComponent>
-      <div>
-        <Topbar />
-      </div>
+      <Topbar />
+
       <MainHeader>
         <Image src={PETG_img} alt="PETG" />
         <NanumTextDiv margin="-24px 0px 0px 0px">토픽 TOP3</NanumTextDiv>
@@ -26,7 +24,6 @@ const Main = () => {
       <ButtonDiv margin="95px 0px 0px 0px">모든 토픽 보러가기</ButtonDiv>
       <TrophyImage width="97.656px" height="94px" src={trophy_img} alt="trophy" />
     </PageComponent>
-
   );
 };
 
